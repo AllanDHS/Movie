@@ -1,0 +1,22 @@
+{
+  "name": "annuaire-films",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllanDHS/Annuaire-Films.git"
+  },
+  "author": "Allan.D",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AllanDHS/Annuaire-Films/issues"
+  },
+  "homepage": "https://github.com/AllanDHS/Annuaire-Films#readme",
+  "dependencies": {
+    "animate.css": "^4.1.1"
+  }
+}

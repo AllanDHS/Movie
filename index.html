@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+    <link rel="stylesheet" href="assets/css/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
     <title>Film</title>
 </head>
+
 <body>
-    <h1>Bienvenue Sur l'annuaire des films</h1>
-    <p>Vous voulez un renseignement sur un film ?</p>
-    <p>Vous etes au bon endroit</p>
+    <header>
+        <h1 class="animate__animated animate__zoomIn">Bienvenue sur l'annuaire des films</h1>
+        <p>Vous voulez un renseignement sur un film ?</p>
+        <p>Vous etes au bon endroit</p>
+    </header>
+    <main>
+        <div class="movieposter" id="movieposter">
+        <input type="text" placeholder="Ex: Matrix" id="search">
+        <button id="button">Rechercher</button>
+    <div class="pictures" id="pictures"></div>
+    <div class="infos" id="infos"></div>
+</div>
+    
+    
+    </main>
 
 
 
 
 
 
-
-
+    <script src="assets/script/script.js"></script>
 </body>
+
 </html>
