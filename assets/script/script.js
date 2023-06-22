@@ -28,7 +28,7 @@ button.addEventListener('click', function () {
                 <p>${movie.original_title}</p>
                 <p>${movie.release_date}</p>
                 <p>${movie.popularity} % </p>
-            </div>`
+            </div>
                 });
                 
             });
