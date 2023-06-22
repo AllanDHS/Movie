@@ -4,13 +4,14 @@
     margin: 0;
     font-family: 'Roboto Mono', monospace;
     list-style: none;
+    text-decoration: none;
 }
 
 header{
-    background-color: #000;
+    background-color: #ECDBBA;
     padding: 20px;
     text-align: center;
-    color: #fff;
+    color: #191919;
 }
 
 header h1{
@@ -20,7 +21,7 @@ header h1{
 
 header .search input{
     padding: 10px;
-    border: 1px solid #fff;
+    border: 1px solid #C84B31;
     border-radius: 5px;
     width: 450px;
     margin-top: 10px;
@@ -31,18 +32,21 @@ header .search button{
     border: 1px solid #fff;
     border-radius: 5px;
     margin-top: 10px;
-    background-color: #fff;
-    color: #000;
+    background-color: #C84B31;
+    color: #191919;
     cursor: pointer;
 }
 
 .vide{
-    height: 40vh;
+    height: 20vh;
 }
 
 
 /* content */
 
+a{
+    color: #191919;
+}
 
 .new h2{
     font-size: 30px;
@@ -52,17 +56,20 @@ header .search button{
     text-transform: uppercase;
 }
 
+.new {
+    margin-top: 10px;
+}
 
-
-.new .last{
+.new .lastMovie{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    text-align: center;
 }
 
-.new .last img{
+.new .lastMovie img{
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -73,6 +80,42 @@ header .search button{
     width: 23%;
 }
 
+
+.new .popularMovie{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.new .popularMovie img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+.searchMovie{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.searchMovie img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+
 .vide2{
     height: 10vh;
 }
@@ -80,12 +123,13 @@ header .search button{
 
 
 
+
 /* footer */
 
 footer{
-    background-color: #000;
+    background-color: #ECDBBA;
     text-align: center;
-    color: #fff;
+    color: #191919;
 }
 
 footer ul{
