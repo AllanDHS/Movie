@@ -1,38 +1,39 @@
+const last = document.querySelector('.last');
 
-let button = document.getElementById('button')
-let pictures = document.getElementById('pictures')
-let infos = document.getElementById('infos')
+      const options = {
+          method: 'GET',
+          headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGUzN2Y1YTU4ZTQ3ZGIwMGY4NTkyODU3OWY5MDBmOCIsInN1YiI6IjY0NmUxNjEzMzNhMzc2MDE1OGRjMDRhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.10TTdpPPusGwjBn81duAdGN3P84qd250flrJJOeCyEs'
+          }
+      };
 
+      fetch('https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1', options)
+          .then(response => response.json())
+          .then(data => {
+              last.innerHTML = '';
 
+              data.results.slice(0, 4).forEach(movie => {
+                  const movieElement = document.createElement('div');
+                  movieElement.classList.add('movie');
 
-button.addEventListener('click', function () {
-    let search = document.getElementById('search').value
-    console.log(search)
+                  const posterImage = document.createElement('img');
+                  posterImage.src = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
+                  movieElement.appendChild(posterImage);
 
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGUzN2Y1YTU4ZTQ3ZGIwMGY4NTkyODU3OWY5MDBmOCIsInN1YiI6IjY0NmUxNjEzMzNhMzc2MDE1OGRjMDRhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.10TTdpPPusGwjBn81duAdGN3P84qd250flrJJOeCyEs'
-        }
-    };
+                  const titleElement = document.createElement('p');
+                  titleElement.textContent = movie.title;
+                  movieElement.appendChild(titleElement);
 
+                  const dateElement = document.createElement('p');
+                  dateElement.textContent = movie.release_date;
+                  movieElement.appendChild(dateElement);
 
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=fr-FR&page=1`, options)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-                data.results.forEach(movie => {
-                    pictures.innerHTML += `<img src="https://image.tmdb.org/t/p/original${movie.poster_path}">`
-                infos.innerHTML += ` <div class="info" id="infos">
-                <p>${movie.original_title}</p>
-                <p>${movie.release_date}</p>
-                <p>${movie.popularity} % </p>
-            </div>
-                });
-                
-            });
+                  const popularityElement = document.createElement('p');
+                  popularityElement.textContent = `${movie.vote_average}`;
+                  movieElement.appendChild(popularityElement);
 
-        })
-        .catch(err => console.error(err));
-
+                  last.appendChild(movieElement);
+              });
+          })
+          .catch(err => console.error(err));
