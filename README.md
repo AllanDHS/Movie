@@ -2,7 +2,7 @@
 
 ## Création d'un annuaire de films 🍿  
 
-Manipulation de l'API de ** The Movie Data Base (TMDB) **
+Manipulation de l'API de  The Movie Data Base (TMDB) 
 
 affichage des films actuellement en diffusion  ainsi que les prochaines sorties 
 
