@@ -8,10 +8,10 @@
 }
 
 header{
-    background-color: #ECDBBA;
+    background-color: #000000;
     padding: 20px;
     text-align: center;
-    color: #191919;
+    color: #FFF;
 }
 
 header h1{
@@ -37,6 +37,11 @@ header .search button{
     cursor: pointer;
 }
 
+body{
+    background-color: #191919;
+    color: #FFF;
+}
+
 .vide{
     height: 20vh;
 }
@@ -45,7 +50,7 @@ header .search button{
 /* content */
 
 a{
-    color: #191919;
+    color: #FFF;
 }
 
 .new h2{
@@ -127,9 +132,9 @@ a{
 /* footer */
 
 footer{
-    background-color: #ECDBBA;
+    background-color: #000000;
     text-align: center;
-    color: #191919;
+    color: #FFF;
 }
 
 footer ul{
@@ -140,4 +145,27 @@ footer ul{
 
 footer ul li{
     margin-right:20px;
+}
+
+@media  screen and (max-width:390px) {
+    header .search input{
+        width: 60%;
+    }
+
+    .new .lastMovie{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .movie{
+        width: 100%;
+    }
+
+    .new{
+        width: 390px;
+    }
 }
