@@ -6,10 +6,6 @@ const popularMovie = document.querySelector('.popularMovie');
 const h2Popular = document.querySelector('#h2Popular');
 const searchMovie = document.querySelector('.searchMovie');
 
-
-
-
-
 const options = {
     method: 'GET',
     headers: {
@@ -56,7 +52,6 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1', op
 
 
 // affichage des prochains films
-
 
 fetch('https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1', options)
     .then(response => response.json())
@@ -105,18 +100,18 @@ fetch('https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1', optio
                 <p class="modalNote"></p>
             </div>`;
 
-            
+
 
             // Get the button that opens the modal
             var btn = document.querySelectorAll(`.img`);
             console.log(btn);
 
             let id = this.id
-                    console.log(id);
+            console.log(id);
 
             btn.forEach(element => {
                 element.addEventListener('click', function () {
-                    
+
                     let Modal = document.getElementById(`myModal${count}`);
                     Modal.style.display = "block";
                 })
@@ -129,10 +124,10 @@ fetch('https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1', optio
 
 
             // When the user clicks on <span> (x), close the modal
+
             span.addEventListener('click', function () {
                 Modal.style.display = "none";
             })
-
         });
     })
     .catch(err => console.error(err));
@@ -146,20 +141,7 @@ let button = document.querySelector('.button');
 button.addEventListener('click', function () {
 
 
-
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGUzN2Y1YTU4ZTQ3ZGIwMGY4NTkyODU3OWY5MDBmOCIsInN1YiI6IjY0NmUxNjEzMzNhMzc2MDE1OGRjMDRhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.10TTdpPPusGwjBn81duAdGN3P84qd250flrJJOeCyEs'
-        }
-    };
-
-
-
     let input = document.querySelector('.input').value;
-    console.log(input);
-
 
     fetch(`https://api.themoviedb.org/3/search/movie?query=${input}&include_adult=false&language=fr-FR&page=1`, options)
         .then(response => response.json())
@@ -189,6 +171,15 @@ button.addEventListener('click', function () {
                 movieElement.appendChild(popularityElement);
 
                 searchMovie.appendChild(movieElement);
+
+                
+
+                // Condition pour afficher une image si le film n'en a pas
+                if (movie.backdrop_path === null) {
+                    posterImage.src = `/assets/img/image-not-found.jpg`;
+                }
+
+
             });
 
         });
@@ -197,6 +188,7 @@ button.addEventListener('click', function () {
     popularMovie.style.display = 'none';
     h2Popular.style.display = 'none';
 })
+
     .catch(err => console.error(err));
 
 
