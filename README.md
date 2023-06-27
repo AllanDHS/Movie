@@ -1,4 +1,4 @@
-# MovieBase
+# MovieBase 🎬
 
 ## Création d'un annuaire de films 🍿  
 
