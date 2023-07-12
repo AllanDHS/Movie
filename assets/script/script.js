@@ -29,6 +29,7 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1', op
             movieElement.appendChild(posterImage);
 
             const titleElement = document.createElement('p');
+            titleElement.classList.add('title');
             titleElement.textContent = movie.title;
             movieElement.appendChild(titleElement);
 
@@ -41,6 +42,7 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1', op
             movieElement.appendChild(popularityElement);
 
             lastMovie.appendChild(movieElement);
+            
 
         });
 
@@ -74,6 +76,7 @@ fetch('https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1', optio
             movieElement.appendChild(posterImage);
 
             const titleElement = document.createElement('p');
+            titleElement.classList.add('title');
             titleElement.textContent = movie.title;
             movieElement.appendChild(titleElement);
 
@@ -93,11 +96,17 @@ fetch('https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1', optio
             console.log(movie.title);
             container.innerHTML += `
                 <div id="myModal${count}" class="modal">
+                
                     <div class="modal-content">
                     <span class="close">&times;</span>
-                    <img src="" alt="" class="modalImg">
-                    <p class="modalDescription">${movie.title}</p>
-                    <p class="modalDate"></p>
+                    <div class="modalImg">
+                    <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="" class="modalImg">
+                    </div>
+                    <div class="modalText">
+                    
+                    <p class="modalTitle">${movie.title}</p>
+                    <p class="modalDate">Sortie le : ${movie.release_date}</p>
+                    <p class="modalDescription"><span>Synopsis :</span> ${movie.overview}</p>
                     <p class="modalNote"></p>
                     </div>
                 </div>`;
@@ -136,61 +145,52 @@ fetch('https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1', optio
 
 
         // Fonction recherche de films
+// Fonction recherche de films en temps réel
 
-        let button = document.querySelector('.button');
+let input = document.querySelector('.input');
+let searchResults = document.querySelector('.searchResults');
 
-        button.addEventListener('click', function () {
+input.addEventListener('input', function () {
+    let searchTerm = input.value;
 
+    // Effectuer la recherche uniquement si la saisie de l'utilisateur n'est pas vide
+    if (searchTerm.trim() !== '') {
+        fetch(`https://api.themoviedb.org/3/search/movie?query=${searchTerm}&include_adult=false&language=fr-FR&page=1`, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                searchResults.innerHTML = '';
 
-            let input = document.querySelector('.input').value;
+                data.results.forEach(movie => {
+                    const movieElement = document.createElement('div');
+                    movieElement.classList.add('movie');
 
-            fetch(`https://api.themoviedb.org/3/search/movie?query=${input}&include_adult=false&language=fr-FR&page=1`, options)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    searchMovie.innerHTML = '';
+                    const posterImage = document.createElement('img');
+                    posterImage.setAttribute('id', 'myBtn3');
+                    posterImage.src = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
+                    movieElement.appendChild(posterImage);
 
-                    data.results.forEach(movie => {
-                        const movieElement = document.createElement('div');
-                        movieElement.classList.add('movie');
+                    const titleElement = document.createElement('p');
+                    titleElement.textContent = movie.title;
+                    movieElement.appendChild(titleElement);
 
-                        const posterImage = document.createElement('img');
-                        posterImage.setAttribute('id', 'myBtn3');
-                        posterImage.src = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
-                        movieElement.appendChild(posterImage);
+                    
+                    searchResults.appendChild(movieElement);
 
-                        const titleElement = document.createElement('p');
-                        titleElement.textContent = movie.title;
-                        movieElement.appendChild(titleElement);
-
-                        const dateElement = document.createElement('p');
-                        dateElement.textContent = movie.release_date;
-                        movieElement.appendChild(dateElement);
-
-                        const popularityElement = document.createElement('p');
-                        popularityElement.textContent = `${movie.vote_average}`;
-                        movieElement.appendChild(popularityElement);
-
-                        searchMovie.appendChild(movieElement);
-
-
-
-                        // Condition pour afficher une image si le film n'en a pas
-                        if (movie.backdrop_path === null) {
-                            posterImage.src = `/assets/img/image-not-found.jpg`;
-                        }
-
-
-                    });
-
+                    // Condition pour afficher une image si le film n'en a pas
+                    if (movie.backdrop_path === null) {
+                        posterImage.src = `/assets/img/image-not-found.jpg`;
+                    }
                 });
-            News.style.display = 'none';
-            lastMovie.style.display = 'none';
-            popularMovie.style.display = 'none';
-            h2Popular.style.display = 'none';
-        })
-
+            })
             .catch(err => console.error(err));
 
+        searchResults.style.display = 'block';
+    } else {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
+    }
+});
 
+// ...
     })
